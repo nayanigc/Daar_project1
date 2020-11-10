@@ -1,5 +1,8 @@
 class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
+        String userInput = "regular_expression";
+        String path = "path_to_file";
+        Automaton automaton = new Automaton(userInput);
+        automaton.matchTextFromFile(path);
     }
 }
