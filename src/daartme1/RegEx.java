@@ -48,14 +48,14 @@ public class RegEx {
         RegExTree ret = parse();
         System.out.println("  >> Tree result: "+ret.toString()+".");
         System.out.println();
-        State s1 = new State(true,false);
-      	State s2  = new State(false,true);
-      	Transition t = new Transition(ret.toString(),s1,s2);
-      	Automaton a = new Automaton(ret.toString());
       } catch (Exception e) {
         System.err.println("  >> ERROR: syntax error for regEx \""+regEx+"\".");
       }
-  	 	
+  	 	 int n = regEx.length();
+	      str = regEx.toCharArray();
+	      Automate a = new Automate(regEx.toString());
+	      System.out.println("Start :" + regEx.toString());
+	      System.out.println(a);
       	
       
     }
