@@ -4,17 +4,12 @@ package daartme1;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Automate {
 private List<Node> nodes = new ArrayList<>();
 private int compteur = 0;
 	public Automate(String string) {
 		createAutomate(string);
 	}
-/** 
- * 
- * **/
 	
 	private void createAutomate(String string) {
 		List<String> str = new ArrayList<>();
@@ -177,11 +172,7 @@ private int compteur = 0;
 									}
 									
 								}else {
-									/**
-									 * error du au fait de le faire branche sur voir plus de branche
-									 * il faut que je lui dis si il y a un élément avant la parenthese ne prend pas
-									 * en compte sinon oui
-									 * **/ 
+									
 									if (closed && pointed) {
 										if(wasOr) {
 											while (compteur > 0) {	
@@ -200,9 +191,7 @@ private int compteur = 0;
 										}
 										
 									}else {
-										/**
-										 * Faire la meme chose qu'au if enfont du nombre element sur lequel branche 
-										 * **/
+										
 									Node currentNode = new Node(current, false, false);
 									Node parentNode = nodes.get(nodes.size()-2);
 									nodes.add(currentNode);
@@ -292,9 +281,7 @@ private int compteur = 0;
 	
 	}
 	
-	/**
-	 * Erreur dans le cas (a|b)* ---> 0 -> a --> 1 au lieu de 0--> a --> 0
-	 * **/
+	
 	private void create_automate_or_parenthese_star(List<String> str,String current,boolean wasOr,boolean wasStar,int i,boolean closed) {
 		if (nodes.size() == 0 ) {
 			create_automate_empty(str.get(i));
