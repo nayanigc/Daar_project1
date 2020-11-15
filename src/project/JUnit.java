@@ -1,7 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -41,15 +40,15 @@ public class JUnit {
         }
 
         // Mocking an automaton
-        Automaton testAutomaton = new Automaton(regex);
-        State s1 = new State();
-        State s2 = new State();
-        State s3 = new State();
-        State s4 = new State();
-        s1.setItEnd(false);
-        s2.setItEnd(false);
-        s3.setItEnd(false);
-        s4.setItEnd(true);
+        DFAutomaton testAutomaton = new DFAutomaton(regex);
+        DFAState s1 = new DFAState();
+        DFAState s2 = new DFAState();
+        DFAState s3 = new DFAState();
+        DFAState s4 = new DFAState();
+        s1.setEnd(false);
+        s2.setEnd(false);
+        s3.setEnd(false);
+        s4.setEnd(true);
         s1.addChild(Character.valueOf('S'), s2);
         s2.addChild(Character.valueOf('a'), s2);
         s2.addChild(Character.valueOf('g'), s2);

@@ -3,24 +3,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Automaton {
+public class DFAutomaton {
     private String regEx;
-    private State startingState;
+    private DFAState startingState;
 
-    public Automaton() {
+    public DFAutomaton() {
 
     }
 
-    public Automaton(String regEx) {
+    public DFAutomaton(String regEx) {
         this.regEx = regEx;
-        this.construct();
     }
 
-    public State getStartingState() {
+    public DFAState getStartingState() {
         return startingState;
     }
 
-    public void setStartingState(State startingState) {
+    public void setStartingState(DFAState startingState) {
         this.startingState = startingState;
     }
 
@@ -32,17 +31,18 @@ public class Automaton {
         this.regEx = regEx;
     }
 
-    // Nayani's function here
-    // This function is called from the automaton constructor
-    // The starting state will be stored in the attribute named "startingState"
-    public void construct() {
+    // HERE
+    public static DFAutomaton NFA_To_DFA() {
+        DFAutomaton result = new DFAutomaton();
+        
+        return result;
     }
 
     public boolean matchOneLine(String line) {
-        if (this.startingState.isItEnd())
+        if (this.startingState.isEnd())
             return true;
         int index = 0, tempIndex;
-        State currentState, previousState;
+        DFAState currentState, previousState;
         while (index < line.length()) {
             tempIndex = index - 1;
             currentState = this.startingState;
@@ -50,7 +50,7 @@ public class Automaton {
                 previousState = currentState;
                 tempIndex++;
             } while (tempIndex < line.length() && (currentState = currentState.getChildren().get(Character.valueOf(line.charAt(tempIndex)))) != null);
-            if (previousState.isItEnd())
+            if (previousState.isEnd())
                 return true;
             index++;
         }
