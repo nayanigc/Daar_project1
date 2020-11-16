@@ -5,6 +5,11 @@ public class DFAState {
     private boolean isEnd;
     private HashSet<Integer> name = new HashSet<Integer>();
     private HashMap<Character, DFAState> children = new HashMap<Character, DFAState>();
+    
+    // DFAState stands for Deterministic Finite Automaton State
+    // children : used to map a DFAState into a character (ex: using 'a' we go to state 1); cotrary to NFAState we need only one state holder because it's a DFA
+    // We used hashSet in name instead of array to avoid the process of verifying duplicats and because the name used to execute the subset construction algorithm
+    // which convets a NFA into a DFA (that's why is not one integer as in NFAState).
 
     public DFAState() {
     }
