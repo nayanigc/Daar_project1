@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,7 +19,7 @@ public class JUnit {
     // This test compares the matched lines numbers from egrep with our solution
     @Test
     public void testMatchTextFromFile() {
-        String regex = "S(a|g|r)*on";
+        String regex = "x*a";
         String path = "/home/azzou/Desktop/56667-0.txt";
         ArrayList<Integer> egrepLinesNumbers = new ArrayList<Integer>();
         
@@ -38,42 +39,12 @@ public class JUnit {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        // Mocking an automaton
-        IDFAutomaton testAutomaton = new IDFAutomaton();
-        IDFAState s1 = new IDFAState();
-        IDFAState s2 = new IDFAState();
-        IDFAState s3 = new IDFAState();
-        IDFAState s4 = new IDFAState();
-        s1.setEnd(false);
-        s2.setEnd(false);
-        s3.setEnd(false);
-        s4.setEnd(true);
-        s1.addChild(Character.valueOf('S'), s2);
-        s2.addChild(Character.valueOf('a'), s2);
-        s2.addChild(Character.valueOf('g'), s2);
-        s2.addChild(Character.valueOf('r'), s2);
-        s2.addChild(Character.valueOf('o'), s3);
-        s3.addChild(Character.valueOf('n'), s4);
-        testAutomaton.setStartingState(s1);
-        */
-        RegExTreeProf test;
-        NDFAutomatonProf test2;
-        NFAutomaton test3;
-        IDFAutomaton testAutomaton;
-        try {
-            test = RegExTreeProf.parse(regex);
-            System.out.println(test.toString());
-            test2 = NDFAutomatonProf.step2_AhoUllman(test);
-            System.out.println(test2.toString());
-            test3 = NFAutomaton.EpsilonNFA_To_NFA(test2);
-            System.out.println(test3.toString());
-            testAutomaton = IDFAutomaton.NFA_To_IDFA(test3);
-            System.out.println(testAutomaton.toString());
+
+        DFAutomaton testAutomaton = DFAutomaton.constructDFAutomaton(regex);
+        if (testAutomaton == null) {
+            fail();
+        } else {
             assertEquals(egrepLinesNumbers, testAutomaton.matchTextFromFile(path));
-        }
-        catch (Exception e) {
-            System.out.println(e);
         }
     }
 }

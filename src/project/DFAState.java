@@ -1,8 +1,9 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class DFAState {
     private boolean isEnd;
-    private int name;
+    private HashSet<Integer> name = new HashSet<Integer>();
     private HashMap<Character, DFAState> children = new HashMap<Character, DFAState>();
 
     public DFAState() {
@@ -24,12 +25,16 @@ public class DFAState {
         this.children = children;
     }
 
-    public int getName() {
+    public HashSet<Integer> getName() {
         return name;
     }
 
     public void setName(int name) {
-        this.name = name;
+        this.name.add(name);
+    }
+
+    public void setNameArray(HashSet<Integer> name) {
+        this.name = (HashSet<Integer>) name.clone();
     }
 
     public void addChild(Character character, DFAState state) {
