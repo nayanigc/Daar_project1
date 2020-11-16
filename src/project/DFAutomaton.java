@@ -1,11 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class DFAutomaton {
     private String regEx;
     private DFAState startingState;
+    private HashMap<Integer, DFAState> states = new HashMap<Integer, DFAState>();
 
     public DFAutomaton() {
 
@@ -42,15 +44,14 @@ public class DFAutomaton {
         if (this.startingState.isEnd())
             return true;
         int index = 0, tempIndex;
-        DFAState currentState, previousState;
+        DFAState currentState;
         while (index < line.length()) {
             tempIndex = index - 1;
             currentState = this.startingState;
             do {
-                previousState = currentState;
                 tempIndex++;
-            } while (tempIndex < line.length() && (currentState = currentState.getChildren().get(Character.valueOf(line.charAt(tempIndex)))) != null);
-            if (previousState.isEnd())
+            } while (tempIndex < line.length() && (currentState = currentState.getChildren().get(Character.valueOf(line.charAt(tempIndex)))) != null && !currentState.isEnd());
+            if (currentState != null && currentState.isEnd())
                 return true;
             index++;
         }

@@ -8,6 +8,7 @@ import java.util.Map;
 public class NFAutomaton {
     private String regEx;
     private NFAState startingState;
+    private ArrayList<Integer> endingStates = new ArrayList<Integer>();
     private HashMap<Integer, NFAState> states = new HashMap<Integer, NFAState>();
 
     public NFAutomaton() {
@@ -93,6 +94,7 @@ public class NFAutomaton {
             closure = NFAutomaton.stateClosure(automaton.epsilonTransitionTable, key);
             if (closure.contains(automaton.transitionTable.length-1)) {
                 result.states.get(key).setEnd(true);
+                result.endingStates.add(key);
             }
             for (Integer state: closure) {
                 for (int j = 0; j < 256; j++) {
@@ -115,4 +117,14 @@ public class NFAutomaton {
     public void setStates(HashMap<Integer, NFAState> states) {
         this.states = states;
     }
+
+    public ArrayList<Integer> getEndingStates() {
+        return endingStates;
+    }
+
+    public void setEndingStates(ArrayList<Integer> endingStates) {
+        this.endingStates = endingStates;
+    }
+
+    
 }
