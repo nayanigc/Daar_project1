@@ -19,7 +19,7 @@ public class JUnit {
     // This test compares the matched lines numbers from egrep with our solution
     @Test
     public void testMatchTextFromFile() {
-        String regex = "x*a";
+        String regex = "S(a|r|g)*on";
         String path = "/home/azzou/Desktop/56667-0.txt";
         ArrayList<Integer> egrepLinesNumbers = new ArrayList<Integer>();
         
